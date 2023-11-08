@@ -17,24 +17,28 @@ class con:
         self.struc=struc
     def getstructure(self):
         strtu=[]
-        for i in range(len(strtutemp)):
-            temp=strtutemp[i].split() 
-            if temp[0]=='ATOM':
-                if len(temp)>10:
-                    strtu.append(temp)
+        for i in range(len(self.file)):
+            temp1=self.file[i].split()
+            if temp1[0]=='ATOM':
+                if len(temp1)>10:
+                    strtu.append([temp1[-1],float(temp1[5]),float(temp1[6]),float(temp1[7]),temp1[3],temp1[4]])
                 else:
                     pass
             else:
                 pass
+        
         return strtu
     def getwater(self):
         watercon=[]
         for i in range(len(self.struc)):
-            if self.struc[i][3]!='H2O':
+            if self.struc[i][-2]!='H2O':
                 pass
             else:
                 watercon.append(self.struc[i])
         return watercon
+    
+    
+    
 model=con(strtutemp,[])
 model.struc=model.getstructure()
 watercon=model.getwater()
